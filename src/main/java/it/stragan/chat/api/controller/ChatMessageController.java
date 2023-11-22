@@ -1,29 +1,26 @@
 package it.stragan.chat.api.controller;
 
-import it.stragan.chat.infrastructure.ChatMessageRepository;
-import it.stragan.chat.model.ChatMessage;
+import it.stragan.chat.business.ChatMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/chat")
 public class ChatMessageController {
 
     @Autowired
-    private ChatMessageRepository chatMessageRepository;
+    private ChatMessageService chatMessageService;
+
 
     @PostMapping()
-    public ChatMessage create(@RequestBody ChatMessageDto chatMessageDto) {
-        return chatMessageRepository.save(ChatMessage.builder()
-                .id(UUID.randomUUID().toString())
-                .userId(chatMessageDto.getUserId())
-                .channelId(chatMessageDto.getChannelId())
-                .text(chatMessageDto.getText())
-                .build());
+    public ChatMessageDto create(@RequestBody ChatMessageDto chatMessageDto) {
+       return chatMessageService.create(chatMessageDto);
+    }
+
+    @GetMapping(path = "/{channelId}")
+    public List<ChatMessageDto> get(@PathVariable String channelId){
+        return chatMessageService.getByChannelId(channelId);
     }
 }

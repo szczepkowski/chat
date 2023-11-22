@@ -3,13 +3,15 @@ package it.stragan.chat.api.controller;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Builder
 @Getter
+@NoArgsConstructor
 public class ChatMessageDto {
-    private final String id;
-    private final String userId;
-    private final String channelId;
-    private final String text;
+    private String id;
+    private String userId;
+    private String channelId;
+    private String text;
 }
