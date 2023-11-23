@@ -1,9 +1,9 @@
 package it.stragan.chat.business;
 
-import it.stragan.chat.api.controller.ChatMessageDto;
-import it.stragan.chat.business.mapper.ChatMessageMapper;
+import it.stragan.chat.api.controller.ChatDto;
+import it.stragan.chat.business.mapper.ChatMapper;
 import it.stragan.chat.infrastructure.ChatMessageRepository;
-import it.stragan.chat.model.ChatMessage;
+import it.stragan.chat.model.Chat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +17,17 @@ public class ChatMessageService {
     private ChatMessageRepository chatMessageRepository;
 
     @Autowired
-    private ChatMessageMapper chatMessageMapper;
+    private ChatMapper chatMessageMapper;
 
 
-    public List<ChatMessageDto> getByChannelId(String channelId) {
-        List<ChatMessage> chatMessages = chatMessageRepository.findByChannelId(channelId);
-        return chatMessages.stream().map(chatMessage -> chatMessageMapper.map(chatMessage))
+    public List<ChatDto> getByChat(String chat) {
+        List<Chat> chats = chatMessageRepository.findById(chat);
+        return chats.stream().map(chatMessage -> chatMessageMapper.map(chatMessage))
                 .collect(Collectors.toList());
     }
 
-    public ChatMessageDto create(ChatMessageDto chatMessageDto) {
-        ChatMessage saved = chatMessageRepository.save(chatMessageMapper.map(chatMessageDto));
+    public ChatDto create(ChatDto chatMessageDto) {
+        Chat saved = chatMessageRepository.save(chatMessageMapper.map(chatMessageDto));
         return chatMessageMapper.map(saved);
     }
 }

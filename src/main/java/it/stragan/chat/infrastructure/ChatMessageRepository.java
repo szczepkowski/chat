@@ -1,18 +1,17 @@
 
 package it.stragan.chat.infrastructure;
 
-import it.stragan.chat.model.ChatMessage;
+import it.stragan.chat.model.Chat;
+import it.stragan.chat.model.ChatId;
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @EnableScan
 @Repository
-public interface ChatMessageRepository extends CrudRepository<ChatMessage, String> {
+public interface ChatMessageRepository extends CrudRepository<Chat, ChatId> {
 
-    Optional<ChatMessage> findById(String id);
-    List<ChatMessage> findByChannelId(String channelId);
+    List<Chat> findById(String id);
 }

@@ -15,12 +15,12 @@ public class ChatMessageController {
 
 
     @PostMapping()
-    public ChatMessageDto create(@RequestBody ChatMessageDto chatMessageDto) {
-       return chatMessageService.create(chatMessageDto);
+    public ChatDto create(@RequestBody ChatDto chatDto) {
+       return chatMessageService.create(chatDto);
     }
 
     @GetMapping(path = "/{channelId}")
-    public List<ChatMessageDto> get(@PathVariable String channelId){
-        return chatMessageService.getByChannelId(channelId);
+    public List<ChatDto> get(@PathVariable String channelId){
+        return chatMessageService.getByChat(channelId);
     }
 }
