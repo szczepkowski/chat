@@ -9,7 +9,9 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public abstract class ChatMapper {
 
-    public abstract ChatDto map(Chat chatMessage);
+    @Mapping(target = "chatId.id", source = "id")
+    @Mapping(target = "chatId.created", source = "created")
+    public abstract ChatDto map(Chat chat);
 
     @Mapping(target = "chatId.created", expression = "java(java.time.LocalDateTime.now().toString())")
     @Mapping(target = "chatId.id", source = "chatId.id")

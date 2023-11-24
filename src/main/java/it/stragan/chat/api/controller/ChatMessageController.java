@@ -19,8 +19,8 @@ public class ChatMessageController {
        return chatMessageService.create(chatDto);
     }
 
-    @GetMapping(path = "/{channelId}")
-    public List<ChatDto> get(@PathVariable String channelId){
-        return chatMessageService.getByChat(channelId);
+    @GetMapping(path = "/{id}")
+    public List<ChatDto> get(@PathVariable String id){
+        return chatMessageService.getByChat(id);
     }
 }
