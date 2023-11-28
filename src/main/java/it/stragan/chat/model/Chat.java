@@ -7,12 +7,14 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
 @DynamoDBTable(tableName = "chat")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Setter
 public class Chat {
 
     @Id
@@ -54,5 +56,11 @@ public class Chat {
         return text;
     }
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
+    public void setText(String text) {
+        this.text = text;
+    }
 }
